@@ -23,11 +23,41 @@ def test_sign_in(selenium):
     btn_submit = selenium.find_element_by_xpath("//button[@type='submit']")
     btn_submit.click()
 
-    time.sleep(7)
+   
+    time.sleep(3)
 
-    if selenium.current_url == 'https://petfriends1.herokuapp.com/all_pets':
-        selenium.save_screenshot('result_TestSPF.png')
-    else:
-        raise Exception('Login Error')
+    btn_my_pets = selenium.find_element_by_link_text(u'Мои питомцы')
+    btn_my_pets.click()
+
+    time.sleep(3)
+
+    btn_add_pets = selenium.find_element_by_css_selector('body > div.task2.fill > div > div.\\.col-sm-8.right.fill > div > button')
+    btn_add_pets.click()
+
+    time.sleep(3)
+
+    field_name = selenium.find_element_by_id('name')
+    field_name.clear()
+    field_name.send_keys('Тестовый Бобик')
+
+    time.sleep(3)
+
+    field_animal_type = selenium.find_element_by_id('animal_type')
+    field_animal_type.clear()
+    field_animal_type.send_keys('Супер-дворняга')
+
+    time.sleep(3)
+
+    field_age = selenium.find_element_by_id('age')
+    field_age.clear()
+    field_age.send_keys('100500')
+
+    btn_add = selenium.find_element_by_css_selector('#addPetsModal > div > div > div.modal-footer > button.btn.btn-success')
+    btn_add.click()
+
+    time.sleep(3)
+
+    selenium.save_screenshot('result.png')
+
 
 
